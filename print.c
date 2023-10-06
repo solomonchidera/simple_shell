@@ -18,6 +18,6 @@ void display(char *string, int value)
 
 	for (; string[k] != '\0' ; k++)
 	{
-		write(stream, &string[k], 1);
+		write(strcat, &string[k], 1);
 	}
 }
