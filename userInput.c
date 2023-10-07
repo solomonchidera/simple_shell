@@ -16,7 +16,7 @@ void user_command(char *commands, size_t size)
 	{
 		if (feof(stdin))
 		{
-			display("\n");
+			_puts("\n");
 			exit(EXIT_SUCCESS);
 		}
 		else

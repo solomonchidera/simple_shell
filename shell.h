@@ -9,7 +9,6 @@
 #include <sys/wait.h>
 #include <string.h>
 
-void display(char *string, int value);
 void user_command(char *commands, size_t size);
 void display_prompt(void);
 void exec_command(const char *commands);

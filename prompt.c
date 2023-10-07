@@ -9,5 +9,5 @@
 
 void display_prompt(void)
 {
-	display(")--> ");
+	_puts("(--> ");
 }
