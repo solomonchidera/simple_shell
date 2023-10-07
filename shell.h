@@ -13,4 +13,5 @@ void user_command(char *commands, size_t size);
 void _puts(char *str);
 void display_prompt(void);
 void exec_command(const char *commands);
+int _putchar(char c);
 #endif
