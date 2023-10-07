@@ -20,8 +20,10 @@ void user_command(char *commands, size_t size)
 			exit(EXIT_SUCCESS);
 		}
 		else
+		{
 			perror("No such file or directory");
 			exit(EXIT_FAILURE);
+		}
 	}
 	commands[strcspn(commands, "\n")] = '\0';
 }
