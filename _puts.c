@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _puts - function that prints a string, followed by \n, to stdout
+ * _puts - function that prints a string to stdout
  *
  * @str: char pointer variable
  *
