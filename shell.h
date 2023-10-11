@@ -11,6 +11,19 @@
 #include <errno.h>
 #include <stdarg.h>
 
+#define BUFFER_SIZE 1024
+
+/**
+ * struct print - structure for printing various types
+ * @t: type of element
+ * @f: function to print
+ */
+typedef struct print
+{
+	char *type;
+	int (*func)(va_list);
+} print_t;
+
 #define MAX_PATH_LENGTH 1024
 
 /**
@@ -45,7 +58,7 @@ typedef struct built built_t;
 struct built
 {
         char *flag;
-        int(*fu)(*details d);
+        int(*fu)(details *d);
 };
 
 void user_command(char *commands, size_t size);
@@ -55,15 +68,18 @@ int check_del(char ch, char *del);
 char *find_command_in_path(const char *command);
 char *locateChar(char *string, char c);
 int sloop(details *n, char **av);
+void _puts(char *str);
 int find_(details *n);
 void _exit(int status);
-void _puts(char *str);
 void set_details(details *a, char **av);
 void display_prompt(void);
 void exec_command(const char *commands);
-int _putchar(char c);
 int _strcomp(char *st1, char *st2);
 int _strlen(char *string);
-
-
+/*This is where it all started*/
+int _printf(const char *format, ...);
+int _putchar(char c);
+int base_change_2(unsigned int n, int newdigit, unsigned int base);
+int print_d(va_list d);
+int print_i(va_list i);
 #endif
