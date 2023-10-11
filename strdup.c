@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * strdup_ - a function to duplicate string
@@ -8,7 +8,7 @@
  * Return: pointer to the duplicated string
  */
 
-char strdup_(const char *string)
+char strdup_(char *string)
 {
         int len;
         char *r;
