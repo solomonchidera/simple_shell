@@ -74,39 +74,3 @@ int find_(details *n)
                 }
         return (builtin);
 }
-
-
-
-/**
- * strcut built - contains a builtin string and some related functions
- *
- * @flag: pointer to the built in command flag
- *
- * @fu: common function
- */
-
-struct built
-{
-        char *flag;
-        int(*fu)(*details);
-}built_t;
-
-
-/**
- * struct common_arg - contains arguments to be passed into a function
- *
- * @l_errorcount: error counting
- *
- * @read_fd: the fd to be read from the input line
- */
-
-struct common_arg
-{
-        unsigned int l_errorcount;
-        int read_fd;
-        char *fdname;
-        char *arg;
-        char *argv;
-        char *path;
-        int argc;
-}details;
