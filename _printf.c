@@ -1,5 +1,4 @@
-#include "main.h"
-#include <stdlib.h>
+#include "shell.h"
 
 /**
  * get_spec - get the format
