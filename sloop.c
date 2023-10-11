@@ -59,7 +59,7 @@ int find_(details *n)
         k = 0;
 
         built_t table[] = {
-                {"exit", _myexit},
+                {"exit", _exit},
                 {"cd", _newcd},
                 {"env", _env},
                 {NULL, NULL}
