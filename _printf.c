@@ -30,6 +30,7 @@ int (*get_spec(const char *format))(va_list)
  *
  * Return: number of characters printed
  */
+
 int _printf(const char *format, ...)
 {
 	int i = 0, n = 0;

@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <stdarg.h>
 
 /**
  *print_i - function to print a int number
