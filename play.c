@@ -5,7 +5,6 @@
 
 #define MAX_PATH_LENGTH 1024
 
-// Function to find a command in the PATH
 char *find_command_in_path(const char *command)
 {
 	char *path = getenv("PATH");
@@ -21,14 +20,12 @@ char *find_command_in_path(const char *command)
 
 		if (access(full_path, X_OK) == 0)
 		{
-			// Found the command in the current path entry
 			return strdup_(full_path);
 		}
 
 		token = strtok(NULL, ":");
 	}
 
-	// Command not found in PATH
 	return NULL;
 }
 
