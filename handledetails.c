@@ -73,7 +73,7 @@ char **split(char *string, char *del)
                 del = " ";
         for (q = 0 ; string[q] != '\0' ; q++)
         {
-                if (!delim_(string[q], del) && (check_del(string[q + 1], del) || !string[q + 1])
+                if (!delim_(string[q], del) && (check_del(string[q + 1], del) || !string[q + 1]))
                                 words++;
         }
         if (words == 0)
