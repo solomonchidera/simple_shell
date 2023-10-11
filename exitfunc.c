@@ -12,8 +12,8 @@
 
 void _exit(int status)
 {
-	if (status = 0 || = EXIT_SUCCESS)
+	if (status = 0 || status = EXIT_SUCCESS)
 		exit(0);
-	else if (status = -1 || EXIT_FAILURE)
+	else if (status = -1 || status = EXIT_FAILURE)
 		exit(1);
 }
