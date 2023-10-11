@@ -9,14 +9,14 @@
  */
 int _strlen(char *string)
 {
-        int i = 0;
+	int i = 0;
 
-        if (!string)
-                return (0);
+	if (!string)
+		return (0);
 
-        while (*string++)
-                i++;
-        return (i);
+	while (*string++)
+		i++;
+	return (i);
 }
 
 /**
@@ -29,17 +29,17 @@ int _strlen(char *string)
  */
 int _strcomp(char *st1, char *st2)
 {
-        while (*st1 && *st2)
-        {
-                if (*st1 != *st2)
-                        return (*st1 - *st2);
-                st1++;
-                st2++;
-        }
-        if (*st1 == *st2)
-                return (0);
-        else
-                return (*st1 < *st2 ? -1 : 1);
+	while (*st1 && *st2)
+	{
+		if (*st1 != *st2)
+			return (*st1 - *st2);
+		st1++;
+		st2++;
+	}
+	if (*st1 == *st2)
+		return (0);
+	else
+		return (*st1 < *st2 ? -1 : 1);
 }
 
 /**
@@ -52,14 +52,14 @@ int _strcomp(char *st1, char *st2)
  */
 char *_strcat(char *dest, char *src)
 {
-        char *ret = dest;
+	char *ret = dest;
 
-        while (*dest)
-                dest++;
-        while (*src)
-                *dest++ = *src++;
-        *dest = *src;
-        return (ret);
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (ret);
 
 }
 
@@ -75,13 +75,13 @@ char *_strcat(char *dest, char *src)
 
 char *locateChar(char *string, char c)
 {
-        do {
-                if (*string == c)
-                        return (string);
-        }
-        while (*string++ != '\0');
+	do {
+		if (*string == c)
+			return (string);
+	}
+	while (*string++ != '\0');
 
-        return (NULL);
+	return (NULL);
 }
 
 /**
@@ -96,44 +96,44 @@ char *locateChar(char *string, char c)
 
 int main(int argc, char **argv)
 {
-        int fd;
+	int fd;
 
-        char commands[130];
+	char commands[130];
 
-        fd = 2;
+	fd = 2;
 
-        if (argc == 2)
-        {
-                fd = open(argv[1], O_RDONLY);
+	if (argc == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
 
-                if (fd == -1)
-                {
+		if (fd == -1)
+		{
 
-                        if (errno == EACCES)
-                                exit(126);
-                        if (errno == ENOENT)
-                        {
-                                _puts(argv[0]);
-                                _puts(":can't open");
-                                _puts(argv[1]);
-                                exit(127);
-                        }
-                        return (EXIT_FAILURE);
-                }
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				_puts(argv[0]);
+				_puts(":can't open");
+				_puts(argv[1]);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
+		}
 
-        while (1)
-        {
-                display_prompt();
-                user_command(commands, sizeof(commands));
-                exec_command(commands);
-                if (_strcomp(commands, "exit") == 0)
-                {
-                        break;
-                        exit(0);
-                }
-                commands->read_fd = fd;
-        }
-        sloop(commands, argv);
-        return (EXIT_SUCCESS);
+		while (1)
+		{
+			display_prompt();
+			user_command(commands, sizeof(commands));
+			exec_command(commands);
+			if (_strcomp(commands, "exit") == 0)
+			{
+				break;
+				exit(0);
+			}
+			commands->read_fd = fd;
+		}
+		sloop(commands, argv);
+		return (EXIT_SUCCESS);
 	}
 }
