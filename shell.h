@@ -14,23 +14,6 @@
 #define MAX_PATH_LENGTH 1024
 
 /**
- * strcut built - contains a builtin string and some related functions
- *
- * @flag: pointer to the built in command flag
- *
- * @fu: common function
- */
-
-typedef struct built built_t;
-
-struct built
-{
-        char *flag;
-        int(*fu)(details*);
-}built_t;
-
-
-/**
  * struct common_arg - contains arguments to be passed into a function
  *
  * @l_errorcount: error counting
@@ -39,7 +22,6 @@ struct built
  */
 
 typedef struct common_arg details;
-
 struct common_arg
 {
         unsigned int l_errorcount;
@@ -49,13 +31,27 @@ struct common_arg
         char *argv;
         char *path;
         int argc;
-}details;
+};
+
+/**
+ * strcut built - contains a builtin string and some related functions
+ *
+ * @flag: pointer to the built in command flag
+ *
+ * @fu: common function
+ */
+
+typedef struct built built_t;
+struct built
+{
+        char *flag;
+        int(*fu)(*details d);
+};
 
 void user_command(char *commands, size_t size);
 char **split(char *string, char *del);
-char strdup_(const char *string);
+char strdup_(char *string);
 int check_del(char ch, char *del);
-char strdup_(const char *string);
 char *find_command_in_path(const char *command);
 char *locateChar(char *string, char c);
 int sloop(details *n, char **av);
