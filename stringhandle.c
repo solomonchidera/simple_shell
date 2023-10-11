@@ -21,6 +21,7 @@ int _strlen(char *string)
 
 /**
  * _strcomp - performs comparison of two strangs.
+ *
  * @st1: the first strang
  * @st2: the second strang
  *
@@ -59,4 +60,26 @@ char *_strcat(char *dest, char *src)
 		*dest++ = *src++;
 	*dest = *src;
 	return (ret);
+
+}
+
+/**
+ * locateChar - locates a character in a string
+ *
+ *@string: the string to be parsed
+ *
+ *@c: the character to look for
+ *
+ *Return: string of located characters
+ */
+
+char *locateChar(char *string, char c)
+{
+	do {
+		if (*string == c)
+			return (string);
+	}
+       	while (*string++ != '\0');
+
+	return (NULL);
 }
