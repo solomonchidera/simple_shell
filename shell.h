@@ -21,6 +21,7 @@ char *find_command_in_path(const char *command);
 char *locateChar(char *string, char c);
 int sloop(details *n, char **av);
 int find_(details *n);
+void _exit(int status);
 void _puts(char *str);
 void set_details(details *a, char **av);
 void display_prompt(void);
