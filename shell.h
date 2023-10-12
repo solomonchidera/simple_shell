@@ -58,12 +58,12 @@ typedef struct built built_t;
 struct built
 {
         char *flag;
-        int(*fu)(details *d);
+        int(*fu)(details *details);
 };
 
 void user_command(char *commands, size_t size);
 char **split(char *string, char *del);
-char strdup_(char *string);
+int strdup_(char *string);
 int check_del(char ch, char *del);
 char *find_command_in_path(const char *command);
 char *locateChar(char *string, char c);
