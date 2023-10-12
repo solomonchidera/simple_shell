@@ -13,6 +13,7 @@
 int sloop(details *n, char **av)
 {
 
+	size_t size;
         ssize_t k;
         int builtin;
 
@@ -25,8 +26,8 @@ int sloop(details *n, char **av)
                 clear_(n);
                 if (_interactive(n))
                         display_prompt;
-                k = userinput(n);
-                if (r != -1)
+                k = user_command(n, size);
+                if (k != -1)
                 {
                         set_details(n, av);
                         builtin = find_(n);
@@ -51,19 +52,16 @@ int sloop(details *n, char **av)
 
 int find_(details *n)
 {
+	built_t table[] = {
+		{"exit", _exit},
+		{NULL, NULL}
+	};
 
         int k, builtin;
 
 	builtin = -1;
 
         k = 0;
-
-        built_t table[] = {
-                {"exit", _exit},
-                {"cd", _newcd},
-                {"env", _env},
-                {NULL, NULL}
-        };
 
         for (k = 0 ; table[k].flag ; k++)
                 if (_strcomp(n->argv[0], table[k].flag) == 0)
