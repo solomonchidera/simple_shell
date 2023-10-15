@@ -3,10 +3,10 @@
 
 void display_prompt1(void)
 {
-    _puts(")--> ");
+	_puts(")--> ");
 }
 
 void display_prompt2(void)
 {
-    _puts(">");
+	_puts(">");
 }
