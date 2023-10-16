@@ -38,13 +38,3 @@ char *_fgets(char *str, int size, FILE *stream)
 
 	return str;
 }
-
-int main(void)
-{
-	char buffer[100];
-	printf("Enter a line of text: ");
-	_fgets(buffer, sizeof(buffer), stdin);
-	printf("You entered: %s", buffer);
-
-	return 0;
-}
