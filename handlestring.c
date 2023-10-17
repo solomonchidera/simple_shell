@@ -32,7 +32,7 @@ int _strcomp(char *st1, char *st2)
  *@dest: input string of character
  *
  * Return: character (Success)
-*/
+ */
 
 char *_strcpy(char *dest, char *src)
 {
