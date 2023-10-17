@@ -1,43 +1,43 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <errno.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
 #include "solomon.h"
 #include "node.h"
 #include "executor.h"
 
+/** 
+ * search_path - a function to search the path of your shell
+ *
+ * @file: thee name of the files inside the path
+ *
+ * Return: the path name
+ */
 
 char *search_path(char *file)
 {
 	char *PATH = getenv("PATH");
-	char *p    = PATH;
+	char *p = PATH;
 	char *p2;
 
-	while(p && *p)
+	while (p && *p)
 	{
 		p2 = p;
 
-		while(*p2 && *p2 != ':')
+		while (*p2 && *p2 != ':')
 		{
 			p2++;
 		}
 
-		int  plen = p2-p;
-		if(!plen)
+		int plen = p2-p;
+		if (!plen)
 		{
 			plen = 1;
 		}
 
-		int  alen = strlen(file);
-		char path[plen+1+alen+1];
+		int alen = strlen(file);
+		char path[plen +1 + alen + 1];
 
 		strncpy(path, p, p2-p);
 		path[p2-p] = '\0';
 
-		if(p2[-1] != '/')
+		if (p2[-1] != '/')
 		{
 			strcat(path, "/");
 		}
@@ -45,13 +45,13 @@ char *search_path(char *file)
 		strcat(path, file);
 
 		struct stat st;
-		if(stat(path, &st) == 0)
+		if (stat(path, &st) == 0)
 		{
-			if(!S_ISREG(st.st_mode))
+			if (!S_ISREG(st.st_mode))
 			{
 				errno = ENOENT;
 				p = p2;
-				if(*p2 == ':')
+				if (*p2 == ':')
 				{
 					p++;
 				}
@@ -59,46 +59,45 @@ char *search_path(char *file)
 			}
 
 			p = malloc(strlen(path)+1);
-			if(!p)
+			if (!p)
 			{
 				return NULL;
 			}
 
 			strcpy(p, path);
-			return p;
+			return (p);
 		}
-		else    /* file not found */
+		else
 		{
 			p = p2;
-			if(*p2 == ':')
+			if (*p2 == ':')
 			{
 				p++;
 			}
 		}
 	}
-
 	errno = ENOENT;
-	return NULL;
+	return (NULL);
 }
 
 
 int do_exec_cmd(int argc, char **argv)
 {
-	if(strchr(argv[0], '/'))
+	if (strchr(argv[0], '/'))
 	{
 		execv(argv[0], argv);
 	}
 	else
 	{
 		char *path = search_path(argv[0]);
-		if(!path)
+		if (!path)
 		{
-			return 0;
+			return (0);
 		}
 		execv(path, argv);
 		free(path);
 	}
-	return 0;
+	return (0);
 }
 
 
