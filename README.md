@@ -1,1 +1,3 @@
-# simple_shell_test_test_test
+# Simple Shell Project.
+## Project Objective:
+- Create a prompt and wait for user to input a command.
