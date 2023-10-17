@@ -2,27 +2,29 @@
 #include "scanner.h"
 #include "source.h"
 
-char *t_buffer = NULL;
-int   t_bufsize  = 0;
-int   t_bufindex = -1;
-
 /* special token to indicate end of input */
-struct tokens end_of_tok = 
-{
+struct tokens end_of_tok = {
 	.len_of_text = 0,
 };
-
+/**
+ * addto_buffer - a function to store values inside of a buffer
+ *
+ * @ch: the character to  be stored in the buffer
+ *
+ * Return: Nothing
+ */
 
 void addto_buffer(char ch)
 {
 	char *temp;
+
 	t_buffer[t_bufindex++] = ch;
 
-	if(t_bufindex >= t_bufsize)
+	if (t_bufindex >= t_bufsize)
 	{
-		temp = realloc(t_buffer, t_bufsize*2);
+		temp = realloc(t_buffer, t_bufsize * 2);
 
-		if(!temp)
+		if (!temp)
 		{
 			errno = ENOMEM;
 			return;
@@ -33,62 +35,84 @@ void addto_buffer(char ch)
 	}
 }
 
+/**
+ * make_token - a function to create the tokens
+ *
+ * @st: the string of characters that represents the token
+ *
+ * Return: the tokens that was found from type struct token
+ */
 
 struct tokens *make_token(char *st)
 {
 	struct tokens *tk = malloc(sizeof(struct tokens));
 
-	if(!tk)
+	if (!tk)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	memset(tk, 0, sizeof(struct tokens));
 	tk->len_of_text = strlen(st);
 
-	char *nst = malloc(tk->len_of_text+1);
+	char *nst = malloc(tk->len_of_text + 1);
 
-	if(!nst)
+	if (!nst)
 	{
 		free(tk);
-		return NULL;
+		return (NULL);
 	}
 
 	strcpy(nst, st);
 	tk->token_text = nst;
 
-	return tk;
+	return (tk);
 }
 
+/**
+ * token_freed - a function to free the memory allocated for a token
+ *
+ * @t: the value of the freed token
+ *
+ * Return: Nothing
+ */
 
 void token_freed(struct tokens *t)
 {
-	if(t->token_text)
+	if (t->token_text)
 	{
 		free(t->token_text);
 	}
 	free(t);
 }
 
+/**
+ * tokenizing - The function responsiable about tokenizing
+ * the entred commands
+ *
+ * @s: the tokenizing parameter
+ *
+ * Return: the tokenzied strings from struct type tokens
+ */
 
 struct tokens *tokenizing(struct source *s)
 {
 	int loopend = 0;
 
-	if(!s || !s->bu || !s->busize)
+	if (!s || !s->bu || !s->busize)
 	{
 		errno = ENODATA;
-		return &end_of_tok;
+		return (&end_of_tok);
 	}
 
-	if(!t_buffer)
+	if (!t_buffer)
 	{
 		t_bufsize = 1024;
 		t_buffer = malloc(t_bufsize);
-		if(!t_buffer)
+		if (!t_buffer)
 		{
 			errno = ENOMEM;
-			return &end_of_tok;
+			return (&end_of_tok);
 		}
 	}
 
@@ -97,25 +121,24 @@ struct tokens *tokenizing(struct source *s)
 
 	char n = Nextchar(s);
 
-	if(n == CHARERROR || n == EOF)
+	if (n == CHARERROR || n == EOF)
 	{
-		return &end_of_tok;
+		return (&end_of_tok);
 	}
 
-	do
-	{
-		switch(n)
+	do {
+		switch (n)
 		{
 			case ' ':
 			case '\t':
-				if(t_bufindex > 0)
+				if (t_bufindex > 0)
 				{
 					loopend = 1;
 				}
 				break;
 
 			case '\n':
-				if(t_bufindex > 0)
+				if (t_bufindex > 0)
 				{
 					return_last_char(s);
 				}
@@ -131,32 +154,33 @@ struct tokens *tokenizing(struct source *s)
 				break;
 		}
 
-		if(loopend)
+		if (loopend)
 		{
 			break;
 		}
 
-	} while((n = Nextchar(s)) != EOF);
+	} while ((n = Nextchar(s)) != EOF);
 
-	if(t_bufindex == 0)
+	if (t_bufindex == 0)
 	{
-		return &end_of_tok;
+		return (&end_of_tok);
 	}
 
-	if(t_bufindex >= t_bufsize)
+	if (t_bufindex >= t_bufsize)
 	{
 		t_bufindex--;
 	}
 	t_buffer[t_bufindex] = '\0';
 
 	struct tokens *tk = make_token(t_buffer);
-	if(!tk)
+
+	if (!tk)
 	{
 		fprintf(stderr, "error: failed to alloc buffer: %s\n", strerror(errno));
-		return &end_of_tok;
+		return (&end_of_tok);
 	}
 
 	tk->s = s;
-	return tk;
+	return (tk);
 }
 
