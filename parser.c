@@ -46,4 +46,3 @@ struct nodes *parse_simple_cmd(struct tokens *tk)
 	return command;
 }
 
-
