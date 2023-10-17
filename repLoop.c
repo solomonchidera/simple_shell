@@ -2,38 +2,51 @@
 #include "source.h"
 #include "parser.h"
 
+/**
+ * main - Entry point of the shell
+ *
+ * Return: integer number of the commands executed
+ */
+
 int main(void)
 {
 	char *command;
 
-	do
-	{
+	do {
 		display_prompt1();
 		command = display_command();
 
-		if(!command)
+		if (!command)
 		{
 			exit(EXIT_SUCCESS);
 		}
-		if(command[0] == '\0' || _strcomp(command, "\n") == 0)
+		if (command[0] == '\0' || _strcomp(command, "\n") == 0)
 		{
 			free(command);
 			continue;
 		}
-		if(_strcomp(command, "exit\n") == 0)
+		if (_strcomp(command, "exit\n") == 0)
 		{
 			free(command);
 			break;
 		}
 		struct source src;
-		src.bu   = command;
-		src.busize  = strlen(command);
-		src.cur_pos   = INIT_SRC_POS;
+
+		src.bu = command;
+
+		src.busize = strlen(command);
+		src.cur_pos = INIT_SRC_POS;
 		parse_and_execute(&src);
 		free(command);
-	} while(1);
+	} while (1);
 	exit(EXIT_SUCCESS);
 }
+
+/**
+ * display_command - a function to store the command you've written on a file
+ *
+ * Return: the command that had been displayed
+ */
 
 char *display_command(void)
 {
@@ -43,11 +56,11 @@ char *display_command(void)
 	int blength;
 	char *p2;
 
-	while(fgets(buffer, 1024, stdin))
+	while (fgets(buffer, 1024, stdin))
 	{
 		blength = strlen(buffer);
 
-		if(!p)
+		if (!p)
 		{
 			p = malloc(blength + 1);
 		}
@@ -55,7 +68,7 @@ char *display_command(void)
 		{
 			p2 = realloc(p, lenpointer + blength + 1);
 
-			if(p2)
+			if (p2)
 			{
 				p = p2;
 			}
@@ -65,16 +78,16 @@ char *display_command(void)
 				p = NULL;
 			}
 		}
-		if(!p)
+		if (!p)
 		{
 			_puts("error: failed to alloc buffer");
 			return (NULL);
 		}
 		strcpy(p + lenpointer, buffer);
 
-		if(buffer[blength - 1] == '\n')
+		if (buffer[blength - 1] == '\n')
 		{
-			if(blength == 1 || buffer[blength - 2] != '\\')
+			if (blength == 1 || buffer[blength - 2] != '\\')
 			{
 				return (p);
 			}
@@ -104,16 +117,16 @@ int parse_and_execute(struct source *src)
 
 	struct tokens *tk = tokenizing(src);
 
-	if(tk == &end_of_tok)
+	if (tk == &end_of_tok)
 	{
-		return 0;
+		return (0);
 	}
 
-	while(tk && tk != &end_of_tok)
+	while (tk && tk != &end_of_tok)
 	{
 		struct nodes *cmd = parse_simple_cmd(tk);
 
-		if(!cmd)
+		if (!cmd)
 		{
 			break;
 		}
@@ -123,6 +136,6 @@ int parse_and_execute(struct source *src)
 		tk = tokenizing(src);
 	}
 
-	return 1;
+	return (1);
 }
 
