@@ -13,5 +13,4 @@ extern struct tokens end_of_tok;
 
 struct tokens *tokenizing(struct source *s);
 void token_freed(struct tokens *t);
-
 #endif
