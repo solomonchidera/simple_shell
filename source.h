@@ -17,5 +17,4 @@ char Nextchar(struct source *s);
 void return_last_char(struct source *s);
 char char_sneekpeek(struct source *s);
 void skip_whitespace(struct source *s);
-
 #endif
