@@ -115,7 +115,6 @@ static inline void free_argv(int argc, char **argv)
 	}
 }
 
-
 int do_simple_command(struct nodes *node)
 {
 	if(!node)
