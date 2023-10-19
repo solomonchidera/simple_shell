@@ -8,16 +8,24 @@
  */
 int own_exit(char **args)
 {
-	int curr_stat= EXIT_SUCCESS; 
-
-	if (args[1]) 
+	/* exit with status */
+	if (args[1])
 	{
-		curr_stat = atoi(args[1]); 
-		free(args); 
-		exit(curr_stat);
-	} 
+		int curr_status;
+		curr_status = atoi(args[1]);
 
-	else 
-		free(args); 
-	exit(0);
+		if (curr_status >= 0)
+		{
+			return (curr_status);
+		}
+		else
+		{
+			return (1);
+		}
+	}
+	/* exit success */
+	else
+	{
+		return (0);
+	}
 }
