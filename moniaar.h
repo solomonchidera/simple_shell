@@ -7,13 +7,13 @@
 #include <string.h>
 #include <sys/wait.h>
 
-#define TOK_DELIM " \t\r\n\a\""
+#define TOK_DELIM " \t\r\n\a\\"
 extern char **environ;
 int _putchar(char c);
 void _puts(char *str);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
-#define my_sizeof(type) (char *)(&type + 1) - (char *)(&type)
+#define my_sizeof(type) "(char *)(&type + 1) - (char *)(&type)"
 int main(void);
 
 /* main.c */
