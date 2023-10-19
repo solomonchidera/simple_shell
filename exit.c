@@ -21,7 +21,7 @@ int own_exit(char **args)
 	else
 	{
 		/* If no argument is provided, call exit with a status of 0 for a successful exit */
-		exit(0);
+		exit(1);
 	}
 
 	return (0);
