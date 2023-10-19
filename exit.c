@@ -6,16 +6,23 @@
  *
  * Return: 0 to terminate the process
  */
+
 int own_exit(char **args)
 {
-	/* exit with status */
+	/* Check if there's an argument provided */
 	if (args[1])
 	{
-		return (atoi(args[1]));
+		/* Use atoi to convert the argument to an integer */
+		int exit_status = atoi(args[1]);
+
+		/* Call the exit function with the specified exit status */
+		exit(exit_status);
 	}
-	/* exit success */
 	else
 	{
-		return (1);
+		/* If no argument is provided, call exit with a status of 0 for a successful exit */
+		exit(0);
 	}
+
+	return (0);
 }
