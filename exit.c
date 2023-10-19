@@ -26,6 +26,6 @@ int own_exit(char **args)
 	/* exit success */
 	else
 	{
-		return (0);
+		return (1);
 	}
 }
