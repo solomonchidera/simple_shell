@@ -6,3 +6,10 @@
 - search for the executable form of the command in the path.
 - display the executable file as a baby process of the shell parent process.
 - Go back to the parent process again which is your shell itself.
+
+<details>
+<summary>Click to expand</summary>
+
+Moniaar and Solomon did this
+
+</details>
