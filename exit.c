@@ -1,21 +1,23 @@
 #include "moniaar.h"
 
 /**
- * own_exit - couses normal process termination
+ * own_exit - causes normal process termination
  * @args: empty args
  *
  * Return: 0 to terminate the process
  */
 int own_exit(char **args)
 {
-	/* exit with status */
-	if (args[1])
+	int curr_stat= EXIT_SUCCESS; 
+
+	if (args[1]) 
 	{
-		return (atoi(args[1]));
-	}
-	/* exit success */
-	else
-	{
-		return (0);
-	}
+		curr_stat = atoi(args[1]); 
+		free(args); 
+		exit(curr_stat);
+	} 
+
+	else 
+		free(args); 
+	exit(0);
 }
