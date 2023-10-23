@@ -10,5 +10,5 @@
 <details>
 <summary>Click to expand</summary>
 
-🧑‍🤝‍🧑 Moniaar and Solomon
+🧑‍🤝‍🧑 <a href="https://github.com/Moniaar/">Moniaar</a> and Solomon
 </details>
