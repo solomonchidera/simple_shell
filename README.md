@@ -10,5 +10,5 @@
 <details>
 <summary>Click to expand</summary>
 
-Moniaar and Solomon
+🧑‍🤝‍🧑 Moniaar and Solomon
 </details>
