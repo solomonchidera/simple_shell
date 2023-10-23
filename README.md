@@ -10,6 +10,5 @@
 <details>
 <summary>Click to expand</summary>
 
-Moniaar and Solomon did this
-
+Moniaar and Solomon
 </details>
