@@ -8,7 +8,7 @@
 - Go back to the parent process again which is your shell itself.
 
 <details>
-<summary>Click to expand</summary>
+<summary>Hidden</summary>
 
 🧑‍🤝‍🧑 <a href="https://github.com/Moniaar/">Moniaar</a> and <a href="https://github.com/SolomonChidera">Solomon</a>
 </details>
