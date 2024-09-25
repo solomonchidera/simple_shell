@@ -7,6 +7,7 @@
 - display the executable file as a baby process of the shell parent process.
 - Go back to the parent process again which is your shell itself.
 
+was done by me and the most coolest colleague Moniaar 
 <details>
 <summary>Random Quote</summary>
 
