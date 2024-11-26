@@ -1,5 +1,5 @@
 # Simple Shell Project.
-## Project Objective:
+## Project Objective (Code Algorithm):
 - Create a prompt and wait for user to input a command.
 - parse the command if it's more than 2 in the line.
 - Tokenize long strings.
